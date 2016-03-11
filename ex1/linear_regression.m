@@ -12,6 +12,17 @@ function [f,g] = linear_regression(theta, X,y)
 
   f=0;
   g=zeros(size(theta));
+  
+  for i = 1:m
+    f = f + (theta' * X(:,i) - y(i)) * (theta' * X(:,i) - y(i));
+  end
+  f = f / 2;
+  
+  for j = 1:n
+    for i = 1:m
+      g(j) = g(j) + X(j,i) * (theta' * X(:,i) - y(i));
+    end
+  end
 
   %
   % TODO:  Compute the linear regression objective by looping over the examples in X.
@@ -22,3 +33,5 @@ function [f,g] = linear_regression(theta, X,y)
   %        computed gradient in 'g'.
   
 %%% YOUR CODE HERE %%%
+
+

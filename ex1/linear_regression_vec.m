@@ -11,6 +11,10 @@ function [f,g] = linear_regression_vec(theta, X,y)
   % initialize objective value and gradient.
   f = 0;
   g = zeros(size(theta));
+  
+  tmp = theta' * X - y;
+  f = 0.5 * tmp * tmp';
+  g = X * tmp';
 
   %
   % TODO:  Compute the linear regression objective function and gradient 
