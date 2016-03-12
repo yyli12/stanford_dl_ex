@@ -12,6 +12,12 @@ function [f,g] = logistic_regression(theta, X,y)
   % initialize objective value and gradient.
   f = 0;
   g = zeros(size(theta));
+  
+  for i = 1:m
+    h = sigmoid(theta' * X(:,i));
+    f = f - (y(i) * log(h) + (1 - y(i)) * log(1 - h));
+    g = g + (h - y(i)) * X(:,i);
+  end
 
 
   %
