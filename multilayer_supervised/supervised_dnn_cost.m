@@ -70,7 +70,7 @@ end
 %%% YOUR CODE HERE %%%
 wCost = 0;  
 for l = 1 : numHidden+1  
-    wCost = wCost + .5 * ei.lambda * sum(stack{l}.W(:) .^ 2);  
+    wCost = wCost + 0.5 * ei.lambda * sum(stack{l}.W(:) .^ 2);  
 end  
   
 cost = ceCost + wCost;  
