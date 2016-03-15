@@ -16,10 +16,26 @@ function [f,g] = softmax_regression(theta, X,y)
   % theta is a vector;  need to reshape to n x num_classes.
   theta=reshape(theta, n, []);
   num_classes=size(theta,2)+1;
+  theta(:,num_classes) = 0;
+
+    
   
   % initialize objective value and gradient.
   f = 0;
   g = zeros(size(theta));
+  
+  h = exp(theta' * X);
+  h = bsxfun(@rdivide, h, sum(h, 1));
+  
+  groundtruth = full(sparse(y, 1:m, 1));
+  
+  f = - sum(sum(groundtruth .* log(h)));
+  
+  g = - X * (groundtruth - h)';
+  
+  g = g(:, 1:num_classes-1);  
+
+  
 
   %
   % TODO:  Compute the softmax objective function and gradient using vectorized code.
